@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 4cd1485e7b8104ddab19c893d0ba961a
+timeCreated: 1517074285
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: retrofitted
+  fontNames:
+  - retrofitted
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
