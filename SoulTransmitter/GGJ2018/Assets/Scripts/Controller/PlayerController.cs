@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public enum InputType { KEYBOARD, JOYSTICK };
     public InputType inputType = PlayerController.InputType.JOYSTICK;
 
+	public CharacterAnimationHandler animationHandler;
+
     private float X = 0f;
     private float Y = 0f;
     private float RX = 0f;
@@ -102,6 +104,9 @@ public class PlayerController : MonoBehaviour
 
         _move = new Vector2(X, Y);
         transform.Translate(_move * speed * Time.deltaTime);
+		if (_move != Vector2.zero) {
+			animationHandler.PlayWalkAnimation ();		
+		}
     }
 
     void Aim()
