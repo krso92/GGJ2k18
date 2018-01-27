@@ -43,7 +43,7 @@ public class Map : MonoBehaviour {
 
         string[] lines = fullMap.Split('\n');
 
-        Room spawn;
+		Room spawn = null;
 
         for (int x = 0; x < lines.Length; x++)
             for (int y = 0; y < lines.Length; y++){

@@ -29,6 +29,7 @@ public class Baby : Enemy {
 		// must be in Room bounds, that must be in, collision check, local bounds
 		// try couple of times
 		// 
+		yield return null;
 	}
 
 
