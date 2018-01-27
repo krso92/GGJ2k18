@@ -4,13 +4,33 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+	protected bool isAlive;
+	protected Transform playerRef;
+
+	void OnEnable(){
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (isAlive) {
+			BehaviourUpdate ();
+		}
 	}
+
+	public virtual void Init(Transform player){
+		this.playerRef = player;
+		enabled = true;
+	}
+
+	public virtual void BehaviourUpdate(){
+		throw new System.NotImplementedException ();
+	}
+
+	public virtual void Die(){
+		isAlive = false;
+		enabled = false;
+	}
+
+//	public void 
 }
