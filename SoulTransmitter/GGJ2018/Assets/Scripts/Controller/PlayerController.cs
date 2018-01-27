@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     public enum PlayerType { RADIO, ANTENA };
     public PlayerType playerType = PlayerType.RADIO;
 
+    public enum InputType { KEYBOARD, JOYSTICK };
+    public InputType inputType = PlayerController.InputType.JOYSTICK;
+
     private float X = 0f;
     private float Y = 0f;
     private float RX = 0f;
@@ -35,8 +38,16 @@ public class PlayerController : MonoBehaviour
 
     void InputButtons()
     {
-        X = Input.GetAxis("Horizontal" + playerIndex.ToString());
-        Y = Input.GetAxis("Vertical" + playerIndex.ToString());
+        if (inputType == InputType.JOYSTICK)
+        {
+            X = Input.GetAxis("Horizontal" + playerIndex.ToString());
+            Y = Input.GetAxis("Vertical" + playerIndex.ToString());
+        }
+        else
+        {
+            X = Input.GetAxis("HorizontalKeyboard" + playerIndex.ToString());
+            Y = Input.GetAxis("VerticalKeyboard" + playerIndex.ToString());
+        }
         RX = Input.GetAxis("RAxisX" + playerIndex.ToString());
         RY = Input.GetAxis("RAxisY" + playerIndex.ToString());
         _jump = Input.GetButton("Jump" + playerIndex.ToString());
@@ -71,7 +82,6 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
-
     }
 
     void MovePlayer()
@@ -84,7 +94,6 @@ public class PlayerController : MonoBehaviour
 
     void Aim()
     {
-        print("rx  " + RX + " ry " + RY);
         _aimDirection = new Vector3(RX, RY, 0);
         if (_aimDirection.magnitude > 0.9f)
         {
