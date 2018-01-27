@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     public enum PlayerType { RADIO, ANTENA };
     public PlayerType playerType = PlayerType.RADIO;
 
+    public enum InputType { KEYBOARD, JOYSTICK };
+    public InputType inputType = PlayerController.InputType.JOYSTICK;
+
     private float X = 0f;
     private float Y = 0f;
     private float RX = 0f;
@@ -23,6 +26,8 @@ public class PlayerController : MonoBehaviour
     private bool _jump = false;
     private bool _shoot = false;
     private bool _start = false;
+
+    private bool _aiming = false;
 
     private Vector3 _aimDirection;
     private Vector2 _move;
@@ -35,13 +40,24 @@ public class PlayerController : MonoBehaviour
 
     void InputButtons()
     {
-        X = Input.GetAxis("Horizontal" + playerIndex.ToString());
-        Y = Input.GetAxis("Vertical" + playerIndex.ToString());
-        RX = Input.GetAxis("RAxisX" + playerIndex.ToString());
-        RY = Input.GetAxis("RAxisY" + playerIndex.ToString());
+        if (inputType == InputType.JOYSTICK)
+        {
+            X = Input.GetAxis("Horizontal" + playerIndex.ToString());
+            Y = Input.GetAxis("Vertical" + playerIndex.ToString());
+            _shoot = Input.GetButtonDown("Fire" + playerIndex.ToString());
+            _start = Input.GetButtonDown("Start" + playerIndex.ToString());
+            RX = Input.GetAxis("RAxisX" + playerIndex.ToString());
+            RY = Input.GetAxis("RAxisY" + playerIndex.ToString());
+        }
+        else
+        {
+            X = Input.GetAxis("HorizontalKeyboard" + playerIndex.ToString());
+            Y = Input.GetAxis("VerticalKeyboard" + playerIndex.ToString());
+            _shoot = Input.GetButtonDown("FireKeyboard" + playerIndex.ToString());
+            _start = Input.GetButtonDown("StartKeyboard" + playerIndex.ToString());
+        }
+
         _jump = Input.GetButton("Jump" + playerIndex.ToString());
-        _shoot = Input.GetButtonDown("Fire" + playerIndex.ToString());
-        _start = Input.GetButtonDown("Start" + playerIndex.ToString());
     }
 
 
@@ -66,25 +82,23 @@ public class PlayerController : MonoBehaviour
         //    print("PLayer " + playerIndex + " start is " + _start);
         //}
         Aim();
+        Shoot();
 
     }
     private void FixedUpdate()
     {
         MovePlayer();
-
     }
 
     void MovePlayer()
     {
 
-        Vector2 _move = new Vector2(X, Y);
-
+        _move = new Vector2(X, Y);
         transform.Translate(_move * speed * Time.deltaTime);
     }
 
     void Aim()
     {
-        print("rx  " + RX + " ry " + RY);
         _aimDirection = new Vector3(RX, RY, 0);
         if (_aimDirection.magnitude > 0.9f)
         {
@@ -92,13 +106,20 @@ public class PlayerController : MonoBehaviour
             {
                 shotIndicator.gameObject.SetActive(true);
             }
+            _aiming = true;
             shotIndicator.localPosition = _aimDirection.normalized * _shotIndicatorDistance;
         }
         else if (shotIndicator.gameObject.activeSelf)
         {
+            _aiming = false;
             shotIndicator.gameObject.SetActive(false);
         }
 
+
+    }
+
+    void Shoot()
+    {
 
     }
 }
