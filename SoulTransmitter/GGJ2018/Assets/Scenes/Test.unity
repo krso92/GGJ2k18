@@ -388,6 +388,7 @@ MonoBehaviour:
   speed: 3
   shotIndicator: {fileID: 232919332}
   playerType: 0
+  inputType: 0
   _shotIndicatorDistance: 5
 --- !u!212 &608584984
 SpriteRenderer:
@@ -588,6 +589,7 @@ MonoBehaviour:
   speed: 10
   shotIndicator: {fileID: 287038399}
   playerType: 1
+  inputType: 0
   _shotIndicatorDistance: 3
 --- !u!212 &1886454531
 SpriteRenderer:
