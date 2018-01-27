@@ -44,3 +44,6 @@ TagManager:
   - name: Antenna
     uniqueID: 4118490057
     locked: 0
+  - name: Dictaphone
+    uniqueID: 2766380751
+    locked: 0
