@@ -1,9 +1,9 @@
-SoulTransmitter/[Ll]ibrary/
-SoulTransmitter/[Tt]emp/
-SoulTransmitter/[Oo]bj/
-SoulTransmitter/[Bb]uild/
-SoulTransmitter/[Bb]uilds/
-SoulTransmitter/Assets/AssetStoreTools*
+SoulTransmitter/GGJ2018/[Ll]ibrary/
+SoulTransmitter/GGJ2018/[Tt]emp/
+SoulTransmitter/GGJ2018/[Oo]bj/
+SoulTransmitter/GGJ2018/[Bb]uild/
+SoulTransmitter/GGJ2018/[Bb]uilds/
+SoulTransmitter/GGJ2018/Assets/AssetStoreTools*
 
 # Visual Studio 2015 cache directory
 /.vs/
