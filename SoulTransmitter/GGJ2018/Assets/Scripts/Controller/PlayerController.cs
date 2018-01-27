@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     private bool _shoot = false;
     private bool _start = false;
 
+    private bool _aiming = false;
+
     private Vector3 _aimDirection;
     private Vector2 _move;
     public float _shotIndicatorDistance;
@@ -42,17 +44,20 @@ public class PlayerController : MonoBehaviour
         {
             X = Input.GetAxis("Horizontal" + playerIndex.ToString());
             Y = Input.GetAxis("Vertical" + playerIndex.ToString());
+            _shoot = Input.GetButtonDown("Fire" + playerIndex.ToString());
+            _start = Input.GetButtonDown("Start" + playerIndex.ToString());
+            RX = Input.GetAxis("RAxisX" + playerIndex.ToString());
+            RY = Input.GetAxis("RAxisY" + playerIndex.ToString());
         }
         else
         {
             X = Input.GetAxis("HorizontalKeyboard" + playerIndex.ToString());
             Y = Input.GetAxis("VerticalKeyboard" + playerIndex.ToString());
+            _shoot = Input.GetButtonDown("FireKeyboard" + playerIndex.ToString());
+            _start = Input.GetButtonDown("StartKeyboard" + playerIndex.ToString());
         }
-        RX = Input.GetAxis("RAxisX" + playerIndex.ToString());
-        RY = Input.GetAxis("RAxisY" + playerIndex.ToString());
+
         _jump = Input.GetButton("Jump" + playerIndex.ToString());
-        _shoot = Input.GetButtonDown("Fire" + playerIndex.ToString());
-        _start = Input.GetButtonDown("Start" + playerIndex.ToString());
     }
 
 
@@ -77,6 +82,7 @@ public class PlayerController : MonoBehaviour
         //    print("PLayer " + playerIndex + " start is " + _start);
         //}
         Aim();
+        Shoot();
 
     }
     private void FixedUpdate()
@@ -87,8 +93,7 @@ public class PlayerController : MonoBehaviour
     void MovePlayer()
     {
 
-        Vector2 _move = new Vector2(X, Y);
-
+        _move = new Vector2(X, Y);
         transform.Translate(_move * speed * Time.deltaTime);
     }
 
@@ -101,13 +106,20 @@ public class PlayerController : MonoBehaviour
             {
                 shotIndicator.gameObject.SetActive(true);
             }
+            _aiming = true;
             shotIndicator.localPosition = _aimDirection.normalized * _shotIndicatorDistance;
         }
         else if (shotIndicator.gameObject.activeSelf)
         {
+            _aiming = false;
             shotIndicator.gameObject.SetActive(false);
         }
 
+
+    }
+
+    void Shoot()
+    {
 
     }
 }
