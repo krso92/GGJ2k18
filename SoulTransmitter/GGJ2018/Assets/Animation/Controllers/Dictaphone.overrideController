@@ -7,4 +7,6 @@ AnimatorOverrideController:
   m_PrefabInternal: {fileID: 0}
   m_Name: Dictaphone
   m_Controller: {fileID: 9100000, guid: 36da170857fb847d2b98f07c6e0db041, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 9a6996976a7d640fab28f2ee078147d7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9f7cfd0e7c28a4cf2a6357c18c90dd27, type: 2}

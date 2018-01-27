@@ -31,6 +31,13 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 _aimDirection;
     private Vector2 _move;
+
+	public Vector2 Move{
+		get{ 
+			return _move;
+		}
+	}
+
     public float _shotIndicatorDistance;
     // Use this for initialization
     void Start()
