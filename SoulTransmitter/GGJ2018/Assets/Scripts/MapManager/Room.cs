@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Room : MonoBehaviour {
+public class Room : MonoBehaviour
+{
     public const float XSize = 13;
     public const float YSize = 9;
 
     public static float transitionSpeed = 10;
+
+    public enum Directions { Up, Left, Down, Right };
+    public static Vector3[] DirectionVectors = { new Vector3(0, 1), new Vector3(1, 0), new Vector3(0, -1), new Vector3(-1, 0) };
+    public Room[] nodes = new Room[4];
 
 	public List<Enemy> enemies;
     public GameObject player;
