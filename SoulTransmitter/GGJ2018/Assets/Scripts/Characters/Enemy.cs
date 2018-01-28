@@ -7,15 +7,11 @@ public class Enemy : MonoBehaviour {
 	protected bool isAlive;
 	protected Transform playerRef;
 
+	public float waitTimeMin = 3f;
+	public float waitTimeMax = 8f;
+
 	void OnEnable(){
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (isAlive) {
-			BehaviourUpdate ();
-		}
+		StartCoroutine (BehaviourDeterminator ());
 	}
 
 	public virtual void Init(Transform player){
@@ -23,14 +19,19 @@ public class Enemy : MonoBehaviour {
 		enabled = true;
 	}
 
-	public virtual void BehaviourUpdate(){
+	public virtual void PerformAttackAction(){
 		throw new System.NotImplementedException ();
+	}
+
+	IEnumerator BehaviourDeterminator(){
+		while (isAlive) {
+			yield return new WaitForSeconds(Random.Range (waitTimeMin, waitTimeMax));
+			PerformAttackAction ();
+		}
 	}
 
 	public virtual void Die(){
 		isAlive = false;
 		enabled = false;
 	}
-
-//	public void 
 }
