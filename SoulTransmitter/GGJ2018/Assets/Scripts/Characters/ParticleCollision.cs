@@ -12,9 +12,10 @@ public class ParticleCollision : MonoBehaviour
     private void OnParticleCollision(GameObject other)
     {
         Debug.LogError("UDARA U ENEMY");
-        if (other.gameObject.layer == 10)
+        if (other.gameObject.layer == 9)
         {
             //Skidaj health
+
         }
     }
 

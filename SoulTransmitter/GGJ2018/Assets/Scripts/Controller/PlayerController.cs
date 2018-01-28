@@ -71,7 +71,16 @@ public class PlayerController : MonoBehaviour
         {
             X = Input.GetAxis("HorizontalKeyboard" + playerIndex.ToString());
             Y = Input.GetAxis("VerticalKeyboard" + playerIndex.ToString());
-            _shoot = Input.GetButtonDown("FireKeyboard" + playerIndex.ToString());
+            if (playerIndex == 2)
+            {
+                _shoot = Input.GetButtonDown("FireKeyboard" + playerIndex.ToString());
+            }
+            else
+            {
+                _shoot = Input.GetMouseButtonDown(0);
+
+            }
+
             _start = Input.GetButtonDown("StartKeyboard" + playerIndex.ToString());
         }
 
@@ -117,7 +126,14 @@ public class PlayerController : MonoBehaviour
 
     void Aim()
     {
-        _aimDirection = new Vector3(RX, RY, 0);
+        if (inputType == InputType.JOYSTICK)
+        {
+            _aimDirection = new Vector3(RX, RY, 0);
+        }
+        else
+        {
+            _aimDirection = Input.mousePosition - transform.position;
+        }
         shootParticle.transform.rotation = Quaternion.LookRotation(-transform.position + shotIndicator.transform.position);// = Quaternion.Euler(-transform.position + _aimDirection);
         if (_aimDirection.magnitude > 0.9f)
         {
