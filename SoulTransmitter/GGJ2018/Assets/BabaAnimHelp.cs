@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BabaAnimHelp : MonoBehaviour {
 
-	public Baba baba;
+	public Baby baba;
 
 	public void Shoot() {
-		baba.PerformAttackAction ();	
+		baba.Shoot ();
 	}
 }
