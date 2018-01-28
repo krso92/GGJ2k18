@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class Baby : Enemy
 {
-
     public float[] radiusOfSpawnMinMax = { 2f, 10f };
 
     public ParticleSystem pSystem;
 
+	public bool baba;
+
     private void OnEnable()
     {
         health = 20f;
+		if (baba) {
+			health *= 3f;
+		}
     }
 
     public override void Init(Transform player)
