@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-
-
     public const float XSize = 13;
     public const float YSize = 9;
 
-    public static float transitionSpeed = 50;
+    public static float transitionSpeed = 10;
 
     public enum Directions { Up, Left, Down, Right };
     public static Vector3[] DirectionVectors = { new Vector3(0, 1), new Vector3(1, 0), new Vector3(0, -1), new Vector3(-1, 0) };
@@ -17,8 +15,7 @@ public class Room : MonoBehaviour
 
 	public List<Enemy> enemies;
     public GameObject player;
-
-    public Door[] doors;
+    //public List<GameObject> obstacles;
 
 	public delegate void RoomEnter ();
 	public delegate void RoomExit ();
@@ -27,7 +24,8 @@ public class Room : MonoBehaviour
 	public event RoomExit OnRoomExit = delegate {};
 
 	// Use this for initialization
-	void Start () {  
+	void Start () {
+			
 	}
 	
 	// Update is called once per frame
@@ -40,31 +38,24 @@ public class Room : MonoBehaviour
 		
 	}
 
-    public void Transition(){
-        StartCoroutine(TransitionIE(this));
+    void Transition(Room target){
+        StartCoroutine(TransitionIE(target));
     }
-
-
 
     public IEnumerator TransitionIE(Room room)
     {
-        OnRoomExit();
-        Vector3 newpos = Camera.main.transform.position;
-        Debug.Log(Vector3.Distance(Camera.main.transform.position, room.transform.position));
-        while (Vector3.Distance(room.transform.position, newpos) > 0.5f)
-        {
-            
-            newpos = Vector3.Lerp(room.transform.position, Camera.main.transform.position, 0.5f);
-            newpos.z = -10;
-            Camera.main.transform.position = newpos;
-            yield return new WaitForSecondsRealtime(1 / transitionSpeed);
-            newpos.z = room.transform.position.z;
-            Debug.Log(Vector3.Distance(Camera.main.transform.position, room.transform.position));
-        }
-        Debug.Log("TRANS");
-        Map.Instance.EnableDoors();
+        //Time scale za pauzu, mozda nam zajebe nesto pa cemo menjat
+        Time.timeScale = 0;
 
-        OnRoomEnter();
+        while (Vector3.Distance(Camera.main.transform.position, room.transform.position) < 0.5f)
+        {
+            //Pomeriti playera takodje
+
+            Camera.main.transform.position = Vector3.Lerp(room.transform.position, Camera.main.transform.position, 0.5f);
+            yield return new WaitForSecondsRealtime(1 / transitionSpeed);
+        }
+
+        Time.timeScale = 1;
     }
 
     public Enemy CheckNotSafe(Vector3 pos){
@@ -92,5 +83,10 @@ public class Room : MonoBehaviour
         }
 
         return Vector3.zero;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision){
+        if (collision.gameObject.tag == "Door")
+            Debug.Log("Door hit");
     }
 }
