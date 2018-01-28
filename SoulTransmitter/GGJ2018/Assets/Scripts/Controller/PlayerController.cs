@@ -25,12 +25,13 @@ public class PlayerController : MonoBehaviour
     public CharacterAnimationHandler animationHandler;
 
     public ParticleSystem shootParticle;
-    public ParticleSystem startShootParticle;
 
     private float X = 0f;
     private float Y = 0f;
     private float RX = 0f;
     private float RY = 0f;
+
+    private bool _flippedX;
 
     private bool _jump = false;
     private bool _shoot = false;
@@ -113,6 +114,16 @@ public class PlayerController : MonoBehaviour
     {
 
         _move = new Vector2(X, Y);
+        if (X < 0 && !_flippedX)
+        {
+            _flippedX = true;
+            animationHandler.transform.Rotate(Vector3.up, 180f);
+        }
+        else if (X > 0 && _flippedX)
+        {
+            _flippedX = false;
+            animationHandler.transform.Rotate(Vector3.up, 180f);
+        }
         transform.Translate(_move * speed * Time.deltaTime);
         if (_move != Vector2.zero)
         {
