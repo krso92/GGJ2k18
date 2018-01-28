@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class ParticleCollision : MonoBehaviour
 {
-
-
-
-
+    public int attack;
 
     private void OnParticleCollision(GameObject other)
     {
-        Debug.LogError("UDARA U ENEMY");
-        if (other.gameObject.layer == 9)
+        if (other.gameObject.layer == attack)
         {
-            //Skidaj health
-
+            var enemy = GetComponentInParent<Enemy>();
+            enemy.TakeDamage();
         }
     }
 
