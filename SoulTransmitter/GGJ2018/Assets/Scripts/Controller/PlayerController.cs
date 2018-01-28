@@ -112,14 +112,13 @@ public class PlayerController : MonoBehaviour
         else
         {
             animationHandler.PlayIdleAnimation();
-
         }
     }
 
     void Aim()
     {
         _aimDirection = new Vector3(RX, RY, 0);
-        shootParticle.transform.localRotation = Quaternion.Euler(-transform.position + _aimDirection);
+        shootParticle.transform.rotation = Quaternion.LookRotation(-transform.position + shotIndicator.transform.position);// = Quaternion.Euler(-transform.position + _aimDirection);
         if (_aimDirection.magnitude > 0.9f)
         {
             if (!shotIndicator.gameObject.activeSelf)
@@ -143,12 +142,14 @@ public class PlayerController : MonoBehaviour
         if (_shoot && _aiming)
         {
             shootParticle.transform.position = shotPosition.position;
+            animationHandler.PlayShootAnimation();
+
             shootParticle.Emit(1);
             //GameObject g = Instantiate(shootParticle, shotPosition);
         }
         else
         {
-            if (startShootParticle.isPlaying)
+            if (shootParticle.isPlaying)
             {
                 shootParticle.Stop();
             }
