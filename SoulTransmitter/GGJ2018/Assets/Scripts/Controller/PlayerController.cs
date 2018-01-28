@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     /// Player index for seperated input
     /// </summary>
     public int playerIndex;
+
     public int playerHealth;
 
     public float speed;
@@ -23,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     public CharacterAnimationHandler animationHandler;
 
-    public GameObject shootParticle;
+    public ParticleSystem shootParticle;
     public ParticleSystem startShootParticle;
 
     private float X = 0f;
@@ -86,18 +87,7 @@ public class PlayerController : MonoBehaviour
         InputButtons();
 
         print("PLayer " + playerIndex + "X is " + X + " Y is " + Y);
-        //if (Input.GetButton("Jump" + playerIndex.ToString()))
-        //{
-        //    print("PLayer " + playerIndex + " jump is " + _jump);
-        //}
-        //if (_shoot)
-        //{
-        //    print("PLayer " + playerIndex + " shoot is " + _shoot);
-        //}
-        //if (_start)
-        //{
-        //    print("PLayer " + playerIndex + " start is " + _start);
-        //}
+
         if (playerType == PlayerType.ANTENA)
         {
             Aim();
@@ -119,12 +109,17 @@ public class PlayerController : MonoBehaviour
         {
             animationHandler.PlayWalkAnimation();
         }
+        else
+        {
+            animationHandler.PlayIdleAnimation();
+
+        }
     }
 
     void Aim()
     {
         _aimDirection = new Vector3(RX, RY, 0);
-        shootParticle.transform.localRotation = Quaternion.Euler(-transform.position + shotIndicator.transform.position);
+        shootParticle.transform.localRotation = Quaternion.Euler(-transform.position + _aimDirection);
         if (_aimDirection.magnitude > 0.9f)
         {
             if (!shotIndicator.gameObject.activeSelf)
@@ -147,12 +142,16 @@ public class PlayerController : MonoBehaviour
     {
         if (_shoot && _aiming)
         {
-            startShootParticle.Simulate(1f);
+            shootParticle.transform.position = shotPosition.position;
+            shootParticle.Emit(1);
             //GameObject g = Instantiate(shootParticle, shotPosition);
         }
         else
         {
-            startShootParticle.Stop();
+            if (startShootParticle.isPlaying)
+            {
+                shootParticle.Stop();
+            }
             //shootParticle.Stop();
         }
     }
