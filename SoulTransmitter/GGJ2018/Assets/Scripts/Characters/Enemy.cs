@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour
 
     public Transform animationHolderObj;
 
+    public float health;
+
     public virtual void Init(Transform player)
     {
         this.playerRef = player;
@@ -40,6 +42,24 @@ public class Enemy : MonoBehaviour
     public virtual void Die()
     {
         isAlive = false;
-        enabled = false;
+        gameObject.SetActive(false);
+    }
+
+    public void TakeDamage()
+    {
+        Debug.LogError("happening?");
+        health -= 1f;
+        if (health <= 0f)
+        {
+            Die();
+        }
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        if (other.layer == 9)
+        {
+
+        }
     }
 }
