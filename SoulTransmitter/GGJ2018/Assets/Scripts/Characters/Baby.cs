@@ -2,47 +2,69 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Baby : Enemy {
+public class Baby : Enemy
+{
 
-	public float[] radiusOfSpawnMinMax = { 2f, 10f };
+    public float[] radiusOfSpawnMinMax = { 2f, 10f };
 
-	public ParticleSystem pSystem;
+    public ParticleSystem pSystem;
 
-	public override void Init (Transform player)
-	{
-		base.Init (player);
-	}
+    public override void Init(Transform player)
+    {
+        base.Init(player);
+    }
 
-	public override void PerformAttackAction ()
-	{
-		var wha = Random.Range (0f, 1f);
-		if (wha < .5f) {
-			Shoot ();
-		} else {
-			StartCoroutine (PerformTeleport ());
-		}
-	}
+    public override void PerformAttackAction()
+    {
+        ThrowProjectile();
+        /*
+        var wha = Random.Range(0f, 1f);
+         
+        if (wha < .5f)
+        {
+            Shoot();
+        }
+        else
+        {
+            StartCoroutine(PerformTeleport());
+        }
+        */
+    }
 
-	IEnumerator PerformTeleport() {
-		var playerPos = playerRef.position;
-		float angle = Random.Range (0, 360);
-		float distance = Random.Range (radiusOfSpawnMinMax [0], radiusOfSpawnMinMax [1]);
+    IEnumerator PerformTeleport()
+    {
+        var playerPos = playerRef.position;
+        float angle = Random.Range(0, 360);
+        float distance = Random.Range(radiusOfSpawnMinMax[0], radiusOfSpawnMinMax[1]);
 
-		// if room.in_bounds()
-		// room bounds da mi javi koliko je izaslo napolje da mogu da odradim safe flip
-		// room moze i da javi da li je enemy ili neko drugi dosao tamo
-		// 
+        // if room.in_bounds()
+        // room bounds da mi javi koliko je izaslo napolje da mogu da odradim safe flip
+        // room moze i da javi da li je enemy ili neko drugi dosao tamo
+        // 
 
-		// must be in Room bounds, that must be in, collision check, local bounds
-		// try couple of times
-		// 
-		yield return null;
-	}
+        // must be in Room bounds, that must be in, collision check, local bounds
+        // try couple of times
+        // 
+        yield return null;
+    }
 
-	public void Shoot(){
-		// TODO kupimo ref na plehere odavde:
-		// playerRef.position
-		// pa emituj, a zasad
-		throw new System.NotImplementedException("baby fires but no");
-	}
+    public void ThrowProjectile()
+    {
+        animator.SetTrigger("shoot");
+    }
+
+    public void Shoot()
+    {
+        Vector3 distance = transform.position - Map.Instance.Player1.transform.position;
+        if (distance.x > 0)
+        {
+            animationHolderObj.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else
+        {
+            animationHolderObj.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        pSystem.transform.LookAt(Map.Instance.Player1.transform.position);
+        pSystem.Emit(1);
+    }
 }

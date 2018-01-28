@@ -17,6 +17,7 @@ public class Room : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        OnRoomEnter += InitEnemies;
     }
 
     // Update is called once per frame
@@ -36,14 +37,15 @@ public class Room : MonoBehaviour
         StartCoroutine(TransitionIE(this));
     }
 
-    public void Exit(){
+    public void Exit()
+    {
         OnRoomExit(this);
     }
 
     public IEnumerator TransitionIE(Room room)
     {
         Vector3 newpos = Camera.main.transform.position;
-     
+
         while (Vector3.Distance(room.transform.position, newpos) > 0.1f)
         {
             newpos = Vector3.Lerp(room.transform.position, Camera.main.transform.position, 0.5f);
@@ -83,5 +85,13 @@ public class Room : MonoBehaviour
         }
 
         return Vector3.zero;
+    }
+
+    void InitEnemies(Room room)
+    {
+        foreach (var enemy in room.enemies)
+        {
+            enemy.Init(Map.Instance.Player1.transform);
+        }
     }
 }

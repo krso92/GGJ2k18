@@ -15,6 +15,9 @@ public class Door : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coll)
     {
+        if (coll.gameObject.layer != LayerMask.NameToLayer("Player"))
+            return;
+
         if (!exited) return;
         exited = false;
 
@@ -26,16 +29,18 @@ public class Door : MonoBehaviour
         link.Transition();
         Map.Instance.currentRoom = link;
         Debug.LogWarning(entrance);
-        if(!entrance)
+        if (!entrance)
             TransferPlayers(coll.gameObject);
-        else{
+        else
+        {
             Vector3 pos = entrance.transform.position;
             pos.z = Map.Instance.Player1.transform.position.z;
             Map.Instance.Player1.transform.position = pos;
-        }        
+        }
     }
-    
-    void TransferPlayers(GameObject user){
+
+    void TransferPlayers(GameObject user)
+    {
         Vector3 look = (transform.position - user.transform.position).normalized;
         look.z = 0;
         look = look * 10;

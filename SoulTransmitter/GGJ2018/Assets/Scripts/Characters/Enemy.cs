@@ -2,36 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour
+{
 
-	protected bool isAlive;
-	protected Transform playerRef;
+    protected bool isAlive;
+    protected Transform playerRef;
 
-	public float waitTimeMin = 3f;
-	public float waitTimeMax = 8f;
+    public float waitTimeMin = 3f;
+    public float waitTimeMax = 8f;
 
-	void OnEnable(){
-		StartCoroutine (BehaviourDeterminator ());
-	}
+    public Animator animator;
 
-	public virtual void Init(Transform player){
-		this.playerRef = player;
-		enabled = true;
-	}
+    public Transform animationHolderObj;
 
-	public virtual void PerformAttackAction(){
-		throw new System.NotImplementedException ();
-	}
+    public virtual void Init(Transform player)
+    {
+        this.playerRef = player;
+        enabled = true;
+        isAlive = true;
+        StartCoroutine(BehaviourDeterminator());
+    }
 
-	IEnumerator BehaviourDeterminator(){
-		while (isAlive) {
-			yield return new WaitForSeconds(Random.Range (waitTimeMin, waitTimeMax));
-			PerformAttackAction ();
-		}
-	}
+    public virtual void PerformAttackAction()
+    {
+        throw new System.NotImplementedException();
+    }
 
-	public virtual void Die(){
-		isAlive = false;
-		enabled = false;
-	}
+    IEnumerator BehaviourDeterminator()
+    {
+        while (isAlive)
+        {
+            yield return new WaitForSeconds(Random.Range(waitTimeMin, waitTimeMax));
+            PerformAttackAction();
+        }
+    }
+
+    public virtual void Die()
+    {
+        isAlive = false;
+        enabled = false;
+    }
 }

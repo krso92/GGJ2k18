@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
     {
         InputButtons();
 
-        print("PLayer " + playerIndex + "X is " + X + " Y is " + Y);
+        //print("PLayer " + playerIndex + "X is " + X + " Y is " + Y);
 
         if (playerType == PlayerType.ANTENA)
         {

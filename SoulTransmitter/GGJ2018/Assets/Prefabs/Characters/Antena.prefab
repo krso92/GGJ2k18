@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4715901167461778}
   - component: {fileID: 212726529756123234}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: nogica_desno
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4550371136996968}
   - component: {fileID: 212001009402017032}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 4680447878411198}
   - component: {fileID: 198445576394522282}
   - component: {fileID: 199737386770723996}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CFX3 Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4294081536002018}
   - component: {fileID: 198899753708833486}
   - component: {fileID: 199574103069733786}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CFX3 Sparkles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4646960108316614}
   - component: {fileID: 198818351162597366}
   - component: {fileID: 199327054069507930}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CFX_Cloud Black
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 4256274409974270}
   - component: {fileID: 198717811714950572}
   - component: {fileID: 199842516517493106}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CFX3_Fire_Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 4227302984607736}
   - component: {fileID: 198876132322284652}
   - component: {fileID: 199394073409295394}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CFX_Cloud Black
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 4698796449058980}
   - component: {fileID: 198736698571656014}
   - component: {fileID: 199649127641332100}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CFX3 Sparkles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4782445328737430}
   - component: {fileID: 212413278810995408}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: zenica
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 4846743430683776}
   - component: {fileID: 198200134707341152}
   - component: {fileID: 199423004193802858}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CFX3 Sparkles No Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4678661075207204}
   - component: {fileID: 212337087089116162}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: nogica_levo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 4957996523366110}
   - component: {fileID: 114027251541503726}
   - component: {fileID: 95766495496807464}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AnimatedBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4137021620264654}
   - component: {fileID: 212873498003698874}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ruka_levo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 4775515546012116}
   - component: {fileID: 198351804317755646}
   - component: {fileID: 199518932303070000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CFX_Cloud Black
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4969996176517836}
   - component: {fileID: 212177974433486282}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ruka_desno
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 4084330149996788}
   - component: {fileID: 198082964273294978}
   - component: {fileID: 199170520899438478}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CFX3 Spikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 198085722868941182}
   - component: {fileID: 199699325408399368}
   - component: {fileID: 114020607881448720}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 4787613910399110}
   - component: {fileID: 198702579036832624}
   - component: {fileID: 199582188689222210}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CFX3 Spikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 4882192526720882}
   - component: {fileID: 198474075510194256}
   - component: {fileID: 199735511517739108}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CFX3 Sparkles No Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 114385026597619480}
   - component: {fileID: 60860022888253554}
   - component: {fileID: 50986940549160108}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Antena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,7 +355,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4020628490090452}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShotPlace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 4238625146776472}
   - component: {fileID: 198197695106680550}
   - component: {fileID: 199429658538881214}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CFX_Cloud Black
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 4976484806667214}
   - component: {fileID: 198037463352460946}
   - component: {fileID: 199126525163884176}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CFX3 Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 4231683310845250}
   - component: {fileID: 198172954577060540}
   - component: {fileID: 199146571972289844}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CFX3_Fire_Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,7 +422,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4894516990225532}
   - component: {fileID: 212579625619180090}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: telo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -437,7 +437,7 @@ Transform:
   m_GameObject: {fileID: 1741473374164130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.31, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4550371136996968}
   - {fileID: 4957996523366110}
@@ -973,7 +973,6 @@ MonoBehaviour:
   inputType: 1
   animationHandler: {fileID: 114027251541503726}
   shootParticle: {fileID: 198085722868941182}
-  startShootParticle: {fileID: 0}
   _shotIndicatorDistance: 5
 --- !u!198 &198037463352460946
 ParticleSystem:
