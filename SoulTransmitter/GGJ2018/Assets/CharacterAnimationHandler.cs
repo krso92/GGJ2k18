@@ -22,4 +22,9 @@ public class CharacterAnimationHandler : MonoBehaviour
     {
         animator.SetTrigger("idle");
     }
+    public void PlayShootAnimation()
+    {
+        animator.SetTrigger("shoot");
+    }
+
 }

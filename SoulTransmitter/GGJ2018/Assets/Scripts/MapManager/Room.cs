@@ -4,64 +4,64 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    public const float XSize = 13;
-    public const float YSize = 9;
+    public static float transitionSpeed = 50;
 
-    public static float transitionSpeed = 10;
+    public List<Enemy> enemies;
 
-    public enum Directions { Up, Left, Down, Right };
-    public static Vector3[] DirectionVectors = { new Vector3(0, 1), new Vector3(1, 0), new Vector3(0, -1), new Vector3(-1, 0) };
-    public Room[] nodes = new Room[4];
+    public delegate void RoomEnter(Room room);
+    public delegate void RoomExit(Room room);
 
-	public List<Enemy> enemies;
-    public GameObject player;
-    //public List<GameObject> obstacles;
+    public event RoomEnter OnRoomEnter = delegate { };
+    public event RoomExit OnRoomExit = delegate { };
 
-	public delegate void RoomEnter ();
-	public delegate void RoomExit ();
+    // Use this for initialization
+    void Start()
+    {
+    }
 
-	public event RoomEnter OnRoomEnter = delegate {};
-	public event RoomExit OnRoomExit = delegate {};
+    // Update is called once per frame
+    void Update()
+    {
 
-	// Use this for initialization
-	void Start () {
-			
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
 
-	// Spawnuje sve redom
-	void Spawn(){
-		
-	}
+    // Spawnuje sve redom
+    void Spawn()
+    {
 
-    void Transition(Room target){
-        StartCoroutine(TransitionIE(target));
+    }
+
+    public void Transition()
+    {
+        StartCoroutine(TransitionIE(this));
+    }
+
+    public void Exit(){
+        OnRoomExit(this);
     }
 
     public IEnumerator TransitionIE(Room room)
     {
-        //Time scale za pauzu, mozda nam zajebe nesto pa cemo menjat
-        Time.timeScale = 0;
-
-        while (Vector3.Distance(Camera.main.transform.position, room.transform.position) < 0.5f)
+        Vector3 newpos = Camera.main.transform.position;
+     
+        while (Vector3.Distance(room.transform.position, newpos) > 0.1f)
         {
-            //Pomeriti playera takodje
-
-            Camera.main.transform.position = Vector3.Lerp(room.transform.position, Camera.main.transform.position, 0.5f);
+            newpos = Vector3.Lerp(room.transform.position, Camera.main.transform.position, 0.5f);
+            newpos.z = -10;
+            Camera.main.transform.position = newpos;
             yield return new WaitForSecondsRealtime(1 / transitionSpeed);
+            newpos.z = room.transform.position.z;
         }
 
-        Time.timeScale = 1;
+        OnRoomEnter(this);
     }
 
-    public Enemy CheckNotSafe(Vector3 pos){
+    public Enemy CheckNotSafe(Vector3 pos)
+    {
         Vector3 correctPos = pos;
 
-        foreach(Enemy e in enemies){
+        foreach (Enemy e in enemies)
+        {
             correctPos.z = e.transform.position.z;
             if (e.GetComponent<Collider2D>().bounds.Contains(pos))
                 return e;
@@ -70,7 +70,7 @@ public class Room : MonoBehaviour
         return null;
     }
 
-    public Vector3 GetSafe(Vector3 pos)
+    public Vector3 GetSafe(Vector3 pos, GameObject player)
     {
         Vector3 offset = pos - player.transform.position;
         Vector3 rotated;
@@ -83,10 +83,5 @@ public class Room : MonoBehaviour
         }
 
         return Vector3.zero;
-    }
-
-    void OnTriggerEnter2D(Collider2D collision){
-        if (collision.gameObject.tag == "Door")
-            Debug.Log("Door hit");
     }
 }
