@@ -3,44 +3,61 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Map : MonoBehaviour {
-    [HideInInspector]
-	public Room startRoom;
-    [HideInInspector]
-	public Room exitRoom;
-    [HideInInspector]
+public class Map : MonoBehaviour
+{
+    public static Map Instance;
+
     public Room currentRoom;
 
-	private List<Room> rooms;
+    private List<Room> rooms = new List<Room>();
+    private List<Door> doors = new List<Door>();
 
-	public delegate void InitFinished();
+    public GameObject Player1;
+    public GameObject Player2;
 
-	public event InitFinished OnInitFinished;
+    public delegate void InitFinished();
 
-	// Use this for initialization
-	void Start () {
-        
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		// mozda nesto
-	}
+    public event InitFinished OnInitFinished;
+
+    // Use this for initialization
+    void Start()
+    {
+        Instance = this;
+        LoadChildDoors();
+        LoadChildRooms();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // mozda nesto
+    }
 
 
-	// 
+    // 
 
-	void Init(){
-		
-	}
+    void Init()
+    {
 
-    void Link(){
-        foreach(Room room in rooms)
-            foreach (Room node in rooms)
-                for (int i = 0; i < 4; i++)
-					if (node.transform.position.x - room.transform.position.x + Room.XSize * Room.DirectionVectors[i].x < 0.005 &&
-						node.transform.position.y - room.transform.position.y + Room.YSize * Room.DirectionVectors[i].y < 0.005)
-                        room.nodes[i] = node;
-            
+    }
+
+    void LoadChildRooms()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Room room = transform.GetChild(i).GetComponent<Room>();
+            if (room != null)
+                rooms.Add(room);
+        }
+    }
+
+    void LoadChildDoors()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Door door = transform.GetChild(i).GetComponent<Door>();
+            if (door != null)
+                doors.Add(door);
+        }
     }
 }
