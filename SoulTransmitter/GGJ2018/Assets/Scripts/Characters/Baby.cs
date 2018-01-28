@@ -46,5 +46,6 @@ public class Baby : Enemy
         }
         pSystem.transform.LookAt(Map.Instance.Player1.transform.position);
         pSystem.Emit(1);
+		aSource.PlayOneShot(shootClip);
     }
 }

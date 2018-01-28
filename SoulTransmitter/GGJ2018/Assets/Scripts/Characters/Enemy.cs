@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+	public AudioClip shootClip;
+
+	public AudioSource aSource;
 
     protected bool isAlive;
     protected Transform playerRef;

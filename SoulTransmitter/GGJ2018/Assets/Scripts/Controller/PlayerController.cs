@@ -164,6 +164,9 @@ public class PlayerController : MonoBehaviour
 
     }
 
+	public AudioClip clip;
+	public AudioSource aSource;
+
     void Shoot()
     {
         if (_shoot && _aiming)
@@ -172,6 +175,7 @@ public class PlayerController : MonoBehaviour
             animationHandler.PlayShootAnimation();
 
             shootParticle.Emit(1);
+			aSource.PlayOneShot (clip);
             //GameObject g = Instantiate(shootParticle, shotPosition);
         }
         else
