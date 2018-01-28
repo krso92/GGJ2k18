@@ -8,9 +8,12 @@ public class PlayerController : MonoBehaviour
     /// Player index for seperated input
     /// </summary>
     public int playerIndex;
+    public int playerHealth;
+
     public float speed;
 
     public Transform shotIndicator;
+    public Transform shotPosition;
 
     public enum PlayerType { RADIO, ANTENA };
     public PlayerType playerType = PlayerType.RADIO;
@@ -18,7 +21,10 @@ public class PlayerController : MonoBehaviour
     public enum InputType { KEYBOARD, JOYSTICK };
     public InputType inputType = PlayerController.InputType.JOYSTICK;
 
-	public CharacterAnimationHandler animationHandler;
+    public CharacterAnimationHandler animationHandler;
+
+    public GameObject shootParticle;
+    public ParticleSystem startShootParticle;
 
     private float X = 0f;
     private float Y = 0f;
@@ -34,17 +40,19 @@ public class PlayerController : MonoBehaviour
     private Vector3 _aimDirection;
     private Vector2 _move;
 
-	public Vector2 Move{
-		get{ 
-			return _move;
-		}
-	}
+    public Vector2 Move
+    {
+        get
+        {
+            return _move;
+        }
+    }
 
     public float _shotIndicatorDistance;
     // Use this for initialization
     void Start()
     {
-
+        shootParticle.transform.localPosition = shotPosition.position;
     }
 
     void InputButtons()
@@ -90,7 +98,10 @@ public class PlayerController : MonoBehaviour
         //{
         //    print("PLayer " + playerIndex + " start is " + _start);
         //}
-        Aim();
+        if (playerType == PlayerType.ANTENA)
+        {
+            Aim();
+        }
         Shoot();
 
     }
@@ -104,14 +115,16 @@ public class PlayerController : MonoBehaviour
 
         _move = new Vector2(X, Y);
         transform.Translate(_move * speed * Time.deltaTime);
-		if (_move != Vector2.zero) {
-			animationHandler.PlayWalkAnimation ();		
-		}
+        if (_move != Vector2.zero)
+        {
+            animationHandler.PlayWalkAnimation();
+        }
     }
 
     void Aim()
     {
         _aimDirection = new Vector3(RX, RY, 0);
+        shootParticle.transform.localRotation = Quaternion.Euler(-transform.position + shotIndicator.transform.position);
         if (_aimDirection.magnitude > 0.9f)
         {
             if (!shotIndicator.gameObject.activeSelf)
@@ -132,6 +145,15 @@ public class PlayerController : MonoBehaviour
 
     void Shoot()
     {
-
+        if (_shoot && _aiming)
+        {
+            startShootParticle.Simulate(1f);
+            //GameObject g = Instantiate(shootParticle, shotPosition);
+        }
+        else
+        {
+            startShootParticle.Stop();
+            //shootParticle.Stop();
+        }
     }
 }
