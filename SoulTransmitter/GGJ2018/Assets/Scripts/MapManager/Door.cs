@@ -8,6 +8,9 @@ public class Door : MonoBehaviour
     public Room a;
     public Room b;
 
+    public GameObject aEntrance;
+    public GameObject bEntrance;
+
     public bool exited = true;
 
     void OnTriggerEnter2D(Collider2D coll)
@@ -18,13 +21,20 @@ public class Door : MonoBehaviour
         Map.Instance.currentRoom.Exit();
 
         Room link = a == Map.Instance.currentRoom ? b : a;
-  
+        GameObject entrance = a == Map.Instance.currentRoom ? bEntrance : aEntrance;
+
         link.Transition();
         Map.Instance.currentRoom = link;
-
-        TransferPlayers(coll.gameObject);
+        Debug.LogWarning(entrance);
+        if(!entrance)
+            TransferPlayers(coll.gameObject);
+        else{
+            Vector3 pos = entrance.transform.position;
+            pos.z = Map.Instance.Player1.transform.position.z;
+            Map.Instance.Player1.transform.position = pos;
+        }        
     }
-
+    
     void TransferPlayers(GameObject user){
         Vector3 look = (transform.position - user.transform.position).normalized;
         look.z = 0;
