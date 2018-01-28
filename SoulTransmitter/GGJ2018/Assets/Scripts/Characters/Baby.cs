@@ -6,14 +6,21 @@ public class Baby : Enemy {
 
 	public float[] radiusOfSpawnMinMax = { 2f, 10f };
 
+	public ParticleSystem pSystem;
+
 	public override void Init (Transform player)
 	{
 		base.Init (player);
-		// stagod jos treba
 	}
 
-	public override void BehaviourUpdate() {
-		
+	public override void PerformAttackAction ()
+	{
+		var wha = Random.Range (0f, 1f);
+		if (wha < .5f) {
+			Shoot ();
+		} else {
+			StartCoroutine (PerformTeleport ());
+		}
 	}
 
 	IEnumerator PerformTeleport() {
@@ -32,5 +39,10 @@ public class Baby : Enemy {
 		yield return null;
 	}
 
-
+	public void Shoot(){
+		// TODO kupimo ref na plehere odavde:
+		// playerRef.position
+		// pa emituj, a zasad
+		throw new System.NotImplementedException("baby fires but no");
+	}
 }
