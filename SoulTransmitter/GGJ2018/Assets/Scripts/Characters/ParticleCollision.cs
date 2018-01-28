@@ -4,14 +4,25 @@ using UnityEngine;
 
 public class ParticleCollision : MonoBehaviour
 {
+    public int layer;
     public int attack;
 
     private void OnParticleCollision(GameObject other)
     {
-        if (other.gameObject.layer == attack)
+        if (other.gameObject.layer == layer)
         {
-            var enemy = GetComponentInParent<Enemy>();
-            enemy.TakeDamage();
+            Debug.LogError("Uslooo");
+            var enemy = other.GetComponentInParent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage();
+            }
+            var player = other.GetComponent<PlayerController>();
+            if (player != null)
+            {
+                player.DamageMeBaby(attack);
+            }
+
         }
     }
 

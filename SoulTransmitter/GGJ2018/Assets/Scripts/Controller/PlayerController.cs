@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     private float RY = 0f;
 
     private bool _flippedX;
-
+    private bool _cooldown = true;
     private bool _jump = false;
     private bool _shoot = false;
     private bool _start = false;
@@ -169,9 +169,12 @@ public class PlayerController : MonoBehaviour
 
     void Shoot()
     {
-        if (_shoot && _aiming)
+        if (_shoot && _aiming && _cooldown && !shootParticle.isPlaying)
         {
+            _cooldown = false;
+            StartCoroutine(WeaponCooldown(0.5f));
             shootParticle.transform.position = shotPosition.position;
+            //GameObject g = Resources.Load("bullet");
             animationHandler.PlayShootAnimation();
 
             shootParticle.Emit(1);
@@ -186,5 +189,17 @@ public class PlayerController : MonoBehaviour
             }
             //shootParticle.Stop();
         }
+    }
+
+    public void DamageMeBaby(int dmg)
+    {
+        playerHealth -= dmg;
+    }
+
+
+    IEnumerator WeaponCooldown(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _cooldown = true;
     }
 }
