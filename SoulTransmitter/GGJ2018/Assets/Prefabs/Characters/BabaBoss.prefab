@@ -159,6 +159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4623084197969030}
   - component: {fileID: 114751471938281206}
+  - component: {fileID: 82763704239615790}
   m_Layer: 9
   m_Name: BabaBoss
   m_TagString: Untagged
@@ -849,6 +850,86 @@ PolygonCollider2D:
       - {x: 0.91999996, y: 4.37}
       - {x: 0.96999997, y: 4.36}
       - {x: 0.96, y: 4.37}
+--- !u!82 &82763704239615790
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1407527508029244}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95015406784492902
 Animator:
   serializedVersion: 3
@@ -889,6 +970,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 882dfb95084574d2795c36432daa847c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootClip: {fileID: 8300000, guid: 389e6d27e2b39bb4c823d8fd60e659ba, type: 3}
+  aSource: {fileID: 82763704239615790}
   waitTimeMin: 2
   waitTimeMax: 4
   animator: {fileID: 95015406784492902}
@@ -898,7 +981,7 @@ MonoBehaviour:
   - 2
   - 10
   pSystem: {fileID: 198650094984918448}
-  baba: 0
+  baba: 1
 --- !u!114 &114760497695674664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -910,6 +993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ba7faf6f3df564ca901c59073edce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layer: 0
   attack: 0
 --- !u!198 &198092305996729642
 ParticleSystem:
